@@ -1,5 +1,5 @@
 # ShadowsocksGostPlugin
-Gost 的 Shadowsocks 安卓插件，可以直接在Shadowsocks安卓客户端上连接 Gost 服务器
+[Gost](https://github.com/ginuerzh/gost) 的 [Shadowsocks安卓](https://github.com/shadowsocks/shadowsocks-android) 插件，可以直接在Shadowsocks安卓客户端上连接 Gost 服务器
 
 ## 使用方法
 
