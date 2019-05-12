@@ -1,0 +1,3 @@
+[submodule "go/src/github.com/ginuerzh/gost"]
+	path = go/src/github.com/ginuerzh/gost
+	url = https://github.com/xausky/gost.git

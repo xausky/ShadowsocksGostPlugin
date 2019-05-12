@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.github.shadowsocks.plugin.gost"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'x86_64', 'armeabi-v7a', "arm64-v8a"
+            universalApk true
+        }
+    }
+    signingConfigs {
+        releaseConfig {
+            storeFile file("../../xausky.jks")
+            storePassword project.hasProperty("KEYSTORE_PASS") ? KEYSTORE_PASS : System.getenv("KEYSTORE_PASS")
+            keyAlias project.hasProperty("ALIAS_NAME") ? ALIAS_NAME : System.getenv("ALIAS_NAME")
+            keyPassword project.hasProperty("ALIAS_PASS") ? ALIAS_PASS : System.getenv("ALIAS_PASS")
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.releaseConfig
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.github.shadowsocks:plugin:1.2.0'
+}
+
+task buildGoLibrary(type: Exec) {
+    commandLine 'sh', '../build-go.sh'
+}
+
+tasks.whenTaskAdded { theTask ->
+    if (theTask.name.equals("preReleaseBuild")) {
+        theTask.dependsOn "buildGoLibrary"
+    }
+}
