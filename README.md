@@ -25,7 +25,7 @@
 ## Author
 
 * Github: [@xausky](https://github.com/xausky)
-* BiliBili: [@xausky](https://twitter.com/xausky)
+* BiliBili: [@xausky](https://space.bilibili.com/8419077)
 
 ## 🤝 Contributing
 
