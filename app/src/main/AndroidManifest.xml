@@ -9,7 +9,7 @@
         android:supportsRtl="true">
         <provider android:name=".BinaryProvider"
                   android:exported="true"
-                  android:authorities="$FULLY_QUALIFIED_NAME_OF_YOUR_CONTENTPROVIDER">
+                  android:authorities="com.github.shadowsocks.plugin.gost.BinaryProvider">
             <intent-filter>
                 <action android:name="com.github.shadowsocks.plugin.ACTION_NATIVE_PLUGIN"/>
             </intent-filter>
