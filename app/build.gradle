@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.github.shadowsocks.plugin.gost"
         minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 281
-        versionName "2.8.1"
+        targetSdkVersion 29
+        versionCode 2812
+        versionName "2.8.1-2"
     }
     splits {
         abi {
@@ -19,7 +19,7 @@ android {
     }
     signingConfigs {
         releaseConfig {
-            storeFile file("../../xausky.jks")
+            storeFile file(System.getenv("HOME") + "/.android.jks")
             storePassword System.getenv("KEYSTORE_PASS")
             keyAlias System.getenv("ALIAS_NAME")
             keyPassword System.getenv("ALIAS_PASS")
