@@ -8,8 +8,6 @@
 
 > [Gost](https://github.com/ginuerzh/gost) 的 [Shadowsocks Android](https://github.com/shadowsocks/shadowsocks-android) 插件，可以直接在Shadowsocks安卓客户端上连接 Gost 服务器
 
-### 🏠 [主页](https://github.com/xausky/ShadowsocksGostPlugin)
-
 ## 🚀 安装
 
 下载 [Release](https://github.com/xausky/ShadowsocksGostPlugin/releases) 内预编译好的APK安装到设备，同时也要安装 [Shadowsocks Android](https://github.com/shadowsocks/shadowsocks-android)
