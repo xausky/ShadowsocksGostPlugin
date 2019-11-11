@@ -23,7 +23,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew assembleRelease
       env:
-        - KEY_PASS: ${{secrets.KEY_PASS}}
+        KEY_PASS: ${{secrets.KEY_PASS}}
     - uses: meeDamian/github-release@1.0
       with:
         token: ${{secrets.GITHUB_TOKEN}}
