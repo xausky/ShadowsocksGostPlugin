@@ -32,8 +32,8 @@ dependencies {
 
 task buildGoLibrary(type: Exec) {
     environment ([ANDROID_NDK_ROOT: android.ndkDirectory])
-    commandLine ('sh', 'src/main/go/build.sh')
-    inputs.files 'src/main/go/go.mod', 'src/main/go/go.sum'
+    commandLine ('sh', 'build.sh')
+    inputs.files 'build.sh'
     outputs.dir 'src/main/jniLibs'
 }
 
