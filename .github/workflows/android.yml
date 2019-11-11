@@ -28,4 +28,4 @@ jobs:
         token: ${{secrets.GITHUB_TOKEN}}
         draft: true
         files: app/build/outputs/apk/release/app-release.apk
-      if: github.ref
+      if: github.event.created
