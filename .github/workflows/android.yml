@@ -24,8 +24,13 @@ jobs:
       run: ./gradlew assembleRelease
       env:
         KEY_PASS: ${{secrets.KEY_PASS}}
-    - uses: meeDamian/github-release@1.0
+    - name: Release Build
+      uses: meeDamian/github-release@1.0
       with:
         token: ${{secrets.GITHUB_TOKEN}}
         draft: true
         files: app/build/outputs/apk/release/app-release.apk
+      on:
+        push:
+          tags:
+            - '*'
