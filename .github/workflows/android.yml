@@ -14,7 +14,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Extract Signature
-      run: echo ${{secrets.KEY_FILE}} | base64 -D -o $HOME/.android.jks
+      run: echo ${{secrets.KEY_FILE}} | base64 -d $HOME/.android.jks
     - name: Build with Gradle
       run: ./gradlew assembleRelease
     - uses: meeDamian/github-release@1.0
