@@ -9,20 +9,12 @@ android {
         versionCode 2812
         versionName "2.8.1-2"
     }
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'x86', 'x86_64', 'armeabi-v7a', "arm64-v8a"
-            universalApk true
-        }
-    }
     signingConfigs {
         releaseConfig {
+            keyAlias "default"
+            keyPassword System.getenv("KEY_PASS")
+            storePassword System.getenv("KEY_PASS")
             storeFile file(System.getenv("HOME") + "/.android.jks")
-            storePassword System.getenv("KEYSTORE_PASS")
-            keyAlias System.getenv("ALIAS_NAME")
-            keyPassword System.getenv("ALIAS_PASS")
         }
     }
     buildTypes {

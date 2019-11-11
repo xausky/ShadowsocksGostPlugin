@@ -12,7 +12,7 @@
 
 ## Install
 
-根据CPU构架下载Release内预编译好的APK安装到设备，如果不清楚构架可以下载Universal版本，同时也要安装 [Shadowsocks Android](https://github.com/shadowsocks/shadowsocks-android)
+下载Release内预编译好的APK安装到设备，同时也要安装 [Shadowsocks Android](https://github.com/shadowsocks/shadowsocks-android)
 
 ## Usage
 

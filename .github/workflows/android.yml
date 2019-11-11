@@ -13,5 +13,12 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Extract Signature
+      run: echo ${{secrets.KEY_FILE}} | base64 -D -o $HOME/.android.jks
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew assembleRelease
+    - uses: meeDamian/github-release@1.0
+      with:
+        token: ${{secrets.GITHUB_TOKEN}}
+        draft: true
+        files: app/build/outputs/apk/release/app-release.apk
