@@ -4,9 +4,7 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Code Checkout
       uses: actions/checkout@v1
@@ -30,7 +28,4 @@ jobs:
         token: ${{secrets.GITHUB_TOKEN}}
         draft: true
         files: app/build/outputs/apk/release/app-release.apk
-      on:
-        push:
-          tags:
-            - '*'
+      if: github.ref != null
