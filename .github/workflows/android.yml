@@ -14,10 +14,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Setup GoLang
-      uses: actions/setup-go@v1
-      with:
-        go-version: 1.13.x
     - name: Build with Gradle
       run: ./gradlew assembleRelease
       env:

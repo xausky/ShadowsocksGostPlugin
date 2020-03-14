@@ -6,8 +6,8 @@ android {
         applicationId "com.github.shadowsocks.plugin.gost"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 2813
-        versionName "2.8.1-3"
+        versionCode 2110
+        versionName "2.11.0-1"
     }
     signingConfigs {
         releaseConfig {
@@ -32,8 +32,8 @@ dependencies {
 
 task buildGoLibrary(type: Exec) {
     environment ([ANDROID_NDK_ROOT: android.ndkDirectory])
-    commandLine ('sh', 'build.sh')
-    inputs.files 'build.sh'
+    commandLine ('sh', '../build.sh')
+    inputs.files '../build.sh'
     outputs.dir 'src/main/jniLibs'
 }
 

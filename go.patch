@@ -1,0 +1,52 @@
+diff -ru go-back/src/net/dial.go go/src/net/dial.go
+--- go-back/src/net/dial.go	2020-03-14 14:55:07.506350800 +0800
++++ go/src/net/dial.go	2020-03-14 14:38:30.995350900 +0800
+@@ -347,6 +347,8 @@
+ 	return d.DialContext(context.Background(), network, address)
+ }
+ 
++var DialContextDialerHook func(d *Dialer)
++
+ // DialContext connects to the address on the named network using
+ // the provided context.
+ //
+@@ -366,6 +368,9 @@
+ // See func Dial for a description of the network and address
+ // parameters.
+ func (d *Dialer) DialContext(ctx context.Context, network, address string) (Conn, error) {
++	if DialContextDialerHook != nil {
++		DialContextDialerHook(d)
++	}
+ 	if ctx == nil {
+ 		panic("nil context")
+ 	}
+@@ -519,7 +524,6 @@
+ // either the first successful connection, or the first error.
+ func (sd *sysDialer) dialSerial(ctx context.Context, ras addrList) (Conn, error) {
+ 	var firstErr error // The error from the first address is most relevant.
+-
+ 	for i, ra := range ras {
+ 		select {
+ 		case <-ctx.Done():
+diff -ru go-back/src/net/udpsock.go go/src/net/udpsock.go
+--- go-back/src/net/udpsock.go	2020-03-14 14:55:08.235708400 +0800
++++ go/src/net/udpsock.go	2020-03-14 14:36:19.476741700 +0800
+@@ -219,6 +219,8 @@
+ 	return c, nil
+ }
+ 
++var ListenUDPListenConfigHook func(d *ListenConfig)
++
+ // ListenUDP acts like ListenPacket for UDP networks.
+ //
+ // The network must be a UDP network name; see func Dial for details.
+@@ -238,6 +240,9 @@
+ 		laddr = &UDPAddr{}
+ 	}
+ 	sl := &sysListener{network: network, address: laddr.String()}
++	if ListenUDPListenConfigHook != nil {
++		ListenUDPListenConfigHook(&sl.ListenConfig)
++	}
+ 	c, err := sl.listenUDP(context.Background(), laddr)
+ 	if err != nil {
+ 		return nil, &OpError{Op: "listen", Net: network, Source: nil, Addr: laddr.opAddr(), Err: err}
