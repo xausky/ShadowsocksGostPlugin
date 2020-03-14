@@ -1,9 +1,10 @@
 <h1 align="center">Welcome to Shadowsocks Gost Plugin</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.8.1-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/xausky/ShadowsocksGostPlugin">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
-  </a>
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/xausky/ShadowsocksGostPlugin/Android CI">
+  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/xausky/ShadowsocksGostPlugin">
+  <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/xausky/ShadowsocksGostPlugin/total">
+  <img alt="GitHub issues" src="https://img.shields.io/github/issues/xausky/ShadowsocksGostPlugin">
+  <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/xausky/ShadowsocksGostPlugin">
 </p>
 
 > [Gost](https://github.com/ginuerzh/gost) 的 [Shadowsocks Android](https://github.com/shadowsocks/shadowsocks-android) 插件，可以直接在Shadowsocks安卓客户端上连接 Gost 服务器
