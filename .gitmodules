@@ -1,0 +1,3 @@
+[submodule "gost"]
+	path = gost
+	url = https://github.com/segfault-bilibili/gost.git

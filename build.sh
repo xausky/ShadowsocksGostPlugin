@@ -3,6 +3,7 @@ NDK_VERSION_IF_MISSING=r23b
 GOST_VERSION=2.11.1
 GOLANG_VERSION=1.17.6
 cd $( cd "$( dirname "$0"  )" && pwd  )
+git submodule update --init --recursive
 if [ ! -e build ]
 then
 mkdir build
@@ -18,13 +19,9 @@ fi
 export PATH=$PWD/go/bin:$PATH
 export GOROOT=$PWD/go
 go version
-if [ ! -e gost ]
+if [ ! -e gost ] && [ -d ../gost ]
 then
-curl "https://github.com/ginuerzh/gost/archive/v$GOST_VERSION.tar.gz" -L | tar -zx || exit $?
-mv gost-$GOST_VERSION gost
-cd gost
-patch -p1 -r . < ../../gost.patch
-cd ..
+mv -v ../gost .
 fi
 IS_NDK_MISSING=true
 if find $ANDROID_NDK_ROOT | grep clang$
