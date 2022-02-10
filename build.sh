@@ -10,8 +10,7 @@ fi
 cd build
 if [ ! -e go ]
 then
-curl "https://dl.google.com/go/go$GOLANG_VERSION.linux-amd64.tar.gz" -L -o go.tar.gz
-tar -zxvf go.tar.gz
+curl "https://dl.google.com/go/go$GOLANG_VERSION.linux-amd64.tar.gz" -L | tar -zx || exit $?
 cd go
 patch -p1 -r . < ../../go.patch
 cd ..
@@ -21,8 +20,7 @@ export GOROOT=$PWD/go
 go version
 if [ ! -e gost ]
 then
-curl "https://github.com/ginuerzh/gost/archive/v$GOST_VERSION.tar.gz" -L -o gost.tar.gz
-tar -zxvf gost.tar.gz
+curl "https://github.com/ginuerzh/gost/archive/v$GOST_VERSION.tar.gz" -L | tar -zx || exit $?
 mv gost-$GOST_VERSION gost
 cd gost
 patch -p1 -r . < ../../gost.patch
