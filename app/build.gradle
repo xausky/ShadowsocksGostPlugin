@@ -6,8 +6,8 @@ android {
         applicationId "com.github.shadowsocks.plugin.gost"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 2110
-        versionName "2.11.0-1"
+        versionCode 2111
+        versionName "2.11.1"
     }
     signingConfigs {
         releaseConfig {
