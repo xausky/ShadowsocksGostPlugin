@@ -1,4 +1,5 @@
 set -e
+NDK_VERSION_IF_MISSING=r23b
 GOST_VERSION=2.11.1
 GOLANG_VERSION=1.13.8
 cd $( cd "$( dirname "$0"  )" && pwd  )
@@ -27,8 +28,25 @@ cd gost
 patch -p1 -r . < ../../gost.patch
 cd ..
 fi
+IS_NDK_MISSING=true
+if find $ANDROID_NDK_ROOT | grep clang$
+then
+IS_NDK_MISSING=false
+fi
+echo "IS_NDK_MISSING=$IS_NDK_MISSING"
+if $IS_NDK_MISSING
+then
+mkdir -p ndk
+cd ndk
+curl https://dl.google.com/android/repository/android-ndk-${NDK_VERSION_IF_MISSING}-linux.zip -L -o ndk.zip
+unzip ndk.zip > /dev/null || exit $?
+rm -f ndk.zip
+[ ! -d android-ndk-${NDK_VERSION_IF_MISSING} ] && echo "Missing directory: android-ndk-${NDK_VERSION_IF_MISSING}" && exit 1
+export ANDROID_NDK_ROOT=$PWD/android-ndk-${NDK_VERSION_IF_MISSING}
+cd ..
+fi
+echo "ANDROID_NDK_ROOT=$ANDROID_NDK_ROOT"
 cd gost
-echo $ANDROID_NDK_ROOT
 CC=$(find $ANDROID_NDK_ROOT | grep 'armv7a-linux-androideabi21-clang$') \
 GOOS="android" GOARCH="arm" CGO_ENABLED="1" \
 go build -ldflags "-s -w" -a -o ../../app/src/main/jniLibs/armeabi-v7a/libgost-plugin.so ./cmd/gost
