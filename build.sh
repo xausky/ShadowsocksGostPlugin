@@ -1,7 +1,7 @@
 set -e
 NDK_VERSION_IF_MISSING=r23b
 GOST_VERSION=2.11.1
-GOLANG_VERSION=1.13.8
+GOLANG_VERSION=1.17.6
 cd $( cd "$( dirname "$0"  )" && pwd  )
 if [ ! -e build ]
 then
