@@ -11,7 +11,7 @@
         <item>添加 2 个参数</item>
     </string-array>
     <string name="string_text_file_entries">附加文件</string>
-    <string name="string_text_desc">将会自动添加半角双引号(\")，无需手动添加。\n\"#SS_HOST\"与\"#SS_PORT\"将会被分别替换为Shadowsocks-Android中设置的\"服务器\"与\"远程端口\"。</string>
+    <string name="string_text_desc">请不要在命令行参数中加入双引号(\")，加了会让Gost无法启动。\n\"#SS_HOST\"与\"#SS_PORT\"将会被分别替换为Shadowsocks-Android中设置的\"服务器\"与\"远程端口\"。</string>
     <string name="string_explain_local_encryption">Gost会在本地开一个Shadowsocks服务器，Shadowsocks-Android直接连的就是它。为了避免不必要的开销，一般而言，<b>Shadowsocks-Android</b>本身和<b>Gost的\"-L\"参数</b>都被设为<b>\"none\"无加密模式</b>（如果\"none\"不可用，则换用其他加密方法）——无论如何，<b>两者必须相符</b>才能正常工作。然后Gost会按照\"-F\"参数指定的加密方法来跟远程服务器建立真正的加密连接。</string>
     <string name="string_text_files_reminder">必须添加对应的命令行参数（例如： -C config.json）才能让下面的文件内容生效！</string>
     <string name="string_delete">删除</string>
