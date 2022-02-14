@@ -3,6 +3,7 @@ package com.github.shadowsocks.plugin.gost;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -30,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -394,7 +396,7 @@ public class ConfigActivity extends ConfigurationActivity {
         for (Long index : cmdArgIdx) {
             Editable[] oneOrTwoArgsEditable = cmdArgMap.get(index);
             if (oneOrTwoArgsEditable == null) {
-                Log.e("ConfigActivity", "promptSaveAndApply encountered oneOrTwoArgs == null");
+                Log.e("ConfigActivity", "saveUI encountered oneOrTwoArgs == null");
                 throw new NullPointerException();
             }
             JSONArray oneOrTwoArgs = new JSONArray();
@@ -429,6 +431,13 @@ public class ConfigActivity extends ConfigurationActivity {
         } else {
             this.decodedPluginOptions.remove("legacyCfg");
         }
+
+        // (not UI, but also saved here) save app data directory path
+        File dataDir = new ContextWrapper(getApplicationContext()).getFilesDir();
+        if (!dataDir.exists() && !dataDir.mkdirs()) {
+            Log.e("ConfigActivity", "dataDir.mkdirs() failed");
+        }
+        this.decodedPluginOptions.put("dataDir", dataDir.getAbsolutePath());
     }
     private void populateUI() throws JSONException {
         // populate linearlayout_cmdargs
