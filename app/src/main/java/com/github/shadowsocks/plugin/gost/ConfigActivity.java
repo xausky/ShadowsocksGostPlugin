@@ -410,14 +410,16 @@ public class ConfigActivity extends ConfigurationActivity {
             }
             allArgs.put(oneOrTwoArgs);
         }
-        this.decodedPluginOptions.put("cmdArgs", allArgs);
+        // Note: Golang requires exported identifiers to begin with upper-case alphabet
+        // The same to below
+        this.decodedPluginOptions.put("CmdArgs", allArgs);
 
         // save files
         JSONObject files = new JSONObject();
         for (Map.Entry<String, Editable> entry : fileDataMap.entrySet()) {
             files.put(entry.getKey(), entry.getValue().toString());
         }
-        this.decodedPluginOptions.put("files", files);
+        this.decodedPluginOptions.put("Files", files);
 
         // save legacyCfg, if there's one
         String legacyCfg = "";
@@ -427,9 +429,9 @@ public class ConfigActivity extends ConfigurationActivity {
             legacyCfg = editable_legacyCfg.toString();
         }
         if (legacyCfg.length() > 0) {
-            this.decodedPluginOptions.put("legacyCfg", legacyCfg);
+            this.decodedPluginOptions.put("LegacyCfg", legacyCfg);
         } else {
-            this.decodedPluginOptions.remove("legacyCfg");
+            this.decodedPluginOptions.remove("LegacyCfg");
         }
 
         // (not UI, but also saved here) save app data directory path
@@ -437,11 +439,11 @@ public class ConfigActivity extends ConfigurationActivity {
         if (!dataDir.exists() && !dataDir.mkdirs()) {
             Log.e("ConfigActivity", "dataDir.mkdirs() failed");
         }
-        this.decodedPluginOptions.put("dataDir", dataDir.getAbsolutePath());
+        this.decodedPluginOptions.put("DataDir", dataDir.getAbsolutePath());
     }
     private void populateUI() throws JSONException {
         // populate linearlayout_cmdargs
-        JSONArray array = this.decodedPluginOptions.getJSONArray("cmdArgs");
+        JSONArray array = this.decodedPluginOptions.getJSONArray("CmdArgs");
         for (int i = 0; i < array.length(); i++) {
             JSONArray oneOrTwoArgs = array.getJSONArray(i);
             // remove quotes at the beginning and the end
@@ -466,7 +468,7 @@ public class ConfigActivity extends ConfigurationActivity {
         // read from decodedPluginOptions, if fails, use empty jsonObject
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject = this.decodedPluginOptions.getJSONObject("files");
+            jsonObject = this.decodedPluginOptions.getJSONObject("Files");
         } catch (JSONException ignored) {}
         // ensure that every file name in fileNameList exist in jsonObject
         for (String fileName : fileNameList) {
@@ -498,7 +500,7 @@ public class ConfigActivity extends ConfigurationActivity {
         // populate legacyCfg, if there's one
         String legacyCfg = "";
         try {
-            legacyCfg = this.decodedPluginOptions.getString("legacyCfg");
+            legacyCfg = this.decodedPluginOptions.getString("LegacyCfg");
         } catch (JSONException ignored) {}
         this.populateLegacyCfg(legacyCfg);
     }
