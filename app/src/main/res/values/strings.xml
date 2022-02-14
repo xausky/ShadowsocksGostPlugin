@@ -9,7 +9,7 @@
     <string name="string_text_desc">You don\'t have to type quotes (\"), they will be added automatically.\n\"#SS_HOST\" and \"#SS_PORT\" will be replaced with \"Server\" and \"Remote port\" set in Shadowsocks-Android respectively.</string>
     <string name="string_explain_local_encryption">Gost sets up a local Shadowsocks server, which Shadowsocks-Android directly connects to. To avoid unnecessary overhead, generally, both <b>Shadowsocks-Android</b> itself and <b>Gost\'s \"-L\" parameter</b> are set to <b>\"none\" encryption</b> (or other encryption method if \"none\" is not available) - <b>anyway, it won\'t work if mismatch.</b> Then, Gost establishes actual encrypted connection to the remote server, the encryption method depends on \"-F\" parameter(s).</string>
     <string name="example_cmdarg1" translatable="false">-L</string>
-    <string name="example_cmdarg2" translatable="false"><![CDATA[ss://none@127.0.0.1:8388]]></string>
+    <string name="example_cmdarg2" translatable="false"><![CDATA[ss://none@#SS_LOCAL_HOST:#SS_LOCAL_PORT]]></string>
     <string name="example_cmdarg3" translatable="false">-F</string>
     <string name="example_cmdarg4" translatable="false"><![CDATA[wss://#SS_HOST:#SS_PORT?secure=true&path=/ws]]></string>
     <string name="string_add_arg" translatable="false">+</string>
