@@ -16,7 +16,7 @@
 ## 🔧 使用
 
 * 在 Shadowsocks 客户端选中本插件，即可在参数配置除了 `-L` 参数之外的 Gost 参数以连接远程服务器或者多段代理
-* `-L` 参数会自动添加，只需要在 Shadowsocks 界面配置 `rc4-md5` 加密和 `gost` 密码即可
+* `-L` 参数会自动添加，只需要在 Shadowsocks 界面配置 `none` 无加密和空密码即可
 * Gost 的参数配置里面可以用`#SS_HOST`和`#SS_PORT`代替 Shadowsocks 配置的主机和端口
 
 ## ❗ 注意
