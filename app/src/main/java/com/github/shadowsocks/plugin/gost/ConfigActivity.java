@@ -404,8 +404,6 @@ public class ConfigActivity extends ConfigurationActivity {
                 String arg = oneOfArgs.toString();
                 if (arg.startsWith("\"") && arg.endsWith("\""))
                     arg = arg.substring(1, arg.length() - 1);
-                arg = arg.replaceAll(Matcher.quoteReplacement("\\\""), "\"");
-                arg = arg.replaceAll("\"", Matcher.quoteReplacement("\\\""));
                 // oneOrTwoArgs.put("\"" + arg + "\""); // adding quotes leads to crash
                 oneOrTwoArgs.put(arg);
             }
