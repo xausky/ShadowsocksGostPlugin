@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.shadowsocks.plugin.gost">
 
@@ -7,22 +8,37 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
-        <provider android:name=".BinaryProvider"
-                  android:exported="true"
-                  android:authorities="com.github.shadowsocks.plugin.gost.BinaryProvider">
+        <activity
+            android:name=".ConfigActivity">
             <intent-filter>
-                <action android:name="com.github.shadowsocks.plugin.ACTION_NATIVE_PLUGIN"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.github.shadowsocks.plugin.ACTION_NATIVE_PLUGIN"/>
+                <action android:name="com.github.shadowsocks.plugin.ACTION_CONFIGURE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
                 <data android:scheme="plugin"
-                      android:host="com.github.shadowsocks"
-                      android:pathPrefix="/gost"/>
+                    android:host="com.github.shadowsocks"
+                    android:path="/gost"/>
             </intent-filter>
-            <meta-data android:name="com.github.shadowsocks.plugin.id"
-                       android:value="gost"/>
-            <meta-data android:name="com.github.shadowsocks.plugin.default_config"
-                       android:value="-F ss+mws://chacha20:ss123456@#SS_HOST:#SS_PORT"/>
+        </activity>
+
+        <provider
+            android:name=".BinaryProvider"
+            android:authorities="com.github.shadowsocks.plugin.gost.BinaryProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.github.shadowsocks.plugin.ACTION_NATIVE_PLUGIN" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.github.shadowsocks.plugin.ACTION_NATIVE_PLUGIN" />
+
+                <data
+                    android:host="com.github.shadowsocks"
+                    android:path="/gost"
+                    android:scheme="plugin" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.github.shadowsocks.plugin.id"
+                android:value="gost" />
         </provider>
     </application>
+
 </manifest>

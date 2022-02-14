@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/button_del"
+        android:layout_width="36sp"
+        android:layout_height="wrap_content"
+        android:background="#303030"
+        android:backgroundTint="#303030"
+        android:text="@string/string_del_arg"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText_cmdarg1"
+        android:imeOptions="actionNext"
+        android:layout_width="36sp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/example_cmdarg3"
+        android:minHeight="48dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editText_cmdarg2"
+            android:imeOptions="actionDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/example_cmdarg4"
+            android:minHeight="48dp" />
+    </FrameLayout>
+
+</LinearLayout>

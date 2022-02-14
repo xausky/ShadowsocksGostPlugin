@@ -1,6 +1,5 @@
 package com.github.shadowsocks.plugin.gost;
 
-import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import com.github.shadowsocks.plugin.NativePluginProvider;
