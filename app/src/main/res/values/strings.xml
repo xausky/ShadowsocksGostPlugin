@@ -46,6 +46,9 @@
     <string name="confirm_save_apply_title">Save &amp; apply configurations?</string>
     <string name="confirm_save_apply_msg">Press back button again to continue editing.</string>
     <string name="cancelled">Cancelled</string>
+    <string name="string_text_dns_server">DNS server</string>
+    <string name="string_dns_server_desc">Currently we let Gost rely on itself rather than the system to resolve domain names. In other words, the system DNS settings are bypassed (ignored).\nYou may specify the DNS server you want below, in the format of \"IP_ADDRESS:PORT\", like \"119.29.29.29:53\".</string>
+    <string name="example_dns_server" translatable="false">119.29.29.29:53</string>
     <string name="string_text_legacyCfg">Defunct legacy configuration</string>
     <string name="string_text_legacyCfg_desc">The following configuration <b>no longer takes effect</b>. It\'s here only for backup purpose.\nYou may click \"Revert to legacy config\" to make it take effect yet again, but doing so will <b>irrecoverably discard all change made after the migrating from legacy config</b>.\nYou may export (duplicate) the proxy profile entry in Shadowsocks-Android to make a backup for the current new config, however.</string>
     <string name="revert_to_legacy_config">Revert to legacy config</string>

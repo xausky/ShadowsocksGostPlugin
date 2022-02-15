@@ -39,7 +39,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
 
 public class ConfigActivity extends ConfigurationActivity {
     private LinearLayout linearlayout_cmdargs;
@@ -420,6 +419,18 @@ public class ConfigActivity extends ConfigurationActivity {
         }
         this.decodedPluginOptions.put("Files", files);
 
+        // save DNS server
+        EditText editText_dns_server = findViewById(R.id.editText_dns_server);
+        Editable editable_dns_server = editText_dns_server.getText();
+        String dnsServer = "";
+        if (editable_dns_server != null) {
+            dnsServer = editable_dns_server.toString();
+        }
+        if (dnsServer.length() == 0) {
+            dnsServer = getString(R.string.example_dns_server);
+        }
+        this.decodedPluginOptions.put("DNSServer", dnsServer);
+
         // save legacyCfg, if there's one
         String legacyCfg = "";
         EditText editText_legacyCfg = findViewById(R.id.editText_legacyCfg);
@@ -495,6 +506,17 @@ public class ConfigActivity extends ConfigurationActivity {
                 continue;
             addFileEntry(fileName, jsonObject.getString(fileName), "", true);
         }
+
+        // populate dns server
+        String dnsServer = "";
+        try {
+            dnsServer = this.decodedPluginOptions.getString("DNSServer");
+        } catch (JSONException ignored) {}
+        if (dnsServer.length() == 0) {
+            dnsServer = getString(R.string.example_dns_server);
+        }
+        EditText editText_dns_server = findViewById(R.id.editText_dns_server);
+        editText_dns_server.setText(dnsServer);
 
         // populate legacyCfg, if there's one
         String legacyCfg = "";
