@@ -21,11 +21,11 @@ Download prebuilt APK here [Release](https://github.com/xausky/ShadowsocksGostPl
 
 * 在 Shadowsocks 客户端选中本插件，即可在参数配置除了 `-L` 参数之外的 Gost 参数以连接远程服务器或者多段代理
 * `-L` 参数会自动添加，只需要在 Shadowsocks 界面配置 `none` 无加密和空密码即可
-* Gost 的参数配置里面可以用`#SS_HOST`和`#SS_PORT`代替 Shadowsocks 配置的主机和端口
+* Gost 的命令行参数配置里面可以用`#SS_HOST`和`#SS_PORT`代替 Shadowsocks 配置的主机和端口
 
 * Pick this plugin in Shadowsocks client, then Gost can be configured (except `-L` parameter) to connect to a remote server, or multi-hop proxies
 * `-L` will be automatically added, just configure Shadowsocks to use `none` encryption and empty password
-* In Gost's config parameters, `#SS_HOST`和`#SS_PORT` represents host and port configured in Shadowsocks
+* In Gost's command-line parameters, `#SS_HOST`和`#SS_PORT` represents host and port configured in Shadowsocks
 
 ## ❗ 注意 Notices
 
