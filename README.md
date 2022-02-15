@@ -24,7 +24,7 @@ Download prebuilt APK here [Release](https://github.com/xausky/ShadowsocksGostPl
 * Gost 的参数配置里面可以用`#SS_HOST`和`#SS_PORT`代替 Shadowsocks 配置的主机和端口
 
 * Pick this plugin in Shadowsocks client, then Gost can be configured (except `-L` parameter) to connect to a remote server, or multi-hop proxies
-* `-L` will be automatically added, it's only required to configure Shadowsocks to use `none` encryption and empty password
+* `-L` will be automatically added, just configure Shadowsocks to use `none` encryption and empty password
 * In Gost's config parameters, `#SS_HOST`和`#SS_PORT` represents host and port configured in Shadowsocks
 
 ## ❗ 注意 Notices
