@@ -1,7 +1,9 @@
 set -e
-GOST_VERSION=2.11.0
-GOLANG_VERSION=1.13.8
+NDK_VERSION_IF_MISSING=r23b
+GOST_VERSION=2.11.1
+GOLANG_VERSION=1.17.7
 cd $( cd "$( dirname "$0"  )" && pwd  )
+git submodule update --init --recursive
 if [ ! -e build ]
 then
 mkdir build
@@ -9,8 +11,7 @@ fi
 cd build
 if [ ! -e go ]
 then
-curl "https://dl.google.com/go/go$GOLANG_VERSION.linux-amd64.tar.gz" -L -o go.tar.gz
-tar -zxvf go.tar.gz
+curl "https://dl.google.com/go/go$GOLANG_VERSION.linux-amd64.tar.gz" -L | tar -zx || exit $?
 cd go
 patch -p1 -r . < ../../go.patch
 cd ..
@@ -18,17 +19,29 @@ fi
 export PATH=$PWD/go/bin:$PATH
 export GOROOT=$PWD/go
 go version
-if [ ! -e gost ]
+if [ ! -e gost ] && [ -d ../gost ]
 then
-curl "https://github.com/ginuerzh/gost/archive/v$GOST_VERSION.tar.gz" -L -o gost.tar.gz
-tar -zxvf gost.tar.gz
-mv gost-$GOST_VERSION gost
-cd gost
-patch -p1 -r . < ../../gost.patch
+mv -v ../gost .
+fi
+IS_NDK_MISSING=true
+if find $ANDROID_NDK_ROOT | grep clang$
+then
+IS_NDK_MISSING=false
+fi
+echo "IS_NDK_MISSING=$IS_NDK_MISSING"
+if $IS_NDK_MISSING
+then
+mkdir -p ndk
+cd ndk
+curl https://dl.google.com/android/repository/android-ndk-${NDK_VERSION_IF_MISSING}-linux.zip -L -o ndk.zip
+unzip ndk.zip > /dev/null || exit $?
+rm -f ndk.zip
+[ ! -d android-ndk-${NDK_VERSION_IF_MISSING} ] && echo "Missing directory: android-ndk-${NDK_VERSION_IF_MISSING}" && exit 1
+export ANDROID_NDK_ROOT=$PWD/android-ndk-${NDK_VERSION_IF_MISSING}
 cd ..
 fi
+echo "ANDROID_NDK_ROOT=$ANDROID_NDK_ROOT"
 cd gost
-echo $ANDROID_NDK_ROOT
 CC=$(find $ANDROID_NDK_ROOT | grep 'armv7a-linux-androideabi21-clang$') \
 GOOS="android" GOARCH="arm" CGO_ENABLED="1" \
 go build -ldflags "-s -w" -a -o ../../app/src/main/jniLibs/armeabi-v7a/libgost-plugin.so ./cmd/gost

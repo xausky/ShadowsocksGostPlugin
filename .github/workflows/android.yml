@@ -18,6 +18,11 @@ jobs:
       run: ./gradlew assembleRelease
       env:
         KEY_PASS: ${{secrets.KEY_PASS}}
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ShadowsocksGostPlugin.apk
+        path: app/build/outputs/apk/release/app-release.apk
     - name: Release Build
       uses: meeDamian/github-release@1.0
       with:

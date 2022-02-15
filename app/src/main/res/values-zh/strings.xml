@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShadowsocksGostPlugin</string>
+    <string name="string_text_title">SS-Android Gost插件</string>
+    <string name="string_remind_re_enable">按返回键再点击“确定”按钮即可保存并应用配置参数。\n需要在Shadowsocks-Android里重新开启一下，配置才会生效。</string>
+    <string name="confirm_del_arg_title">删除单个命令行参数</string>
+    <string name="confirm_del_arg_msg">你确定要删除这个命令行参数吗？</string>
+    <string name="string_text_cmdargs">命令行参数</string>
+    <string-array name="string_add_one_or_two_args">
+        <item>添加 1 个参数</item>
+        <item>添加 2 个参数</item>
+    </string-array>
+    <string name="string_text_file_entries">附加文件</string>
+    <string name="string_text_desc">请不要在命令行参数中加入双引号(\")，加了会让Gost无法启动。\n\"#SS_HOST\"与\"#SS_PORT\"将会被分别替换为Shadowsocks-Android中设置的\"服务器\"与\"远程端口\"。</string>
+    <string name="string_explain_local_encryption">Gost会在本地开一个Shadowsocks服务器，Shadowsocks-Android直接连的就是它。为了避免不必要的开销，一般而言，<b>Shadowsocks-Android</b>本身和<b>Gost的\"-L\"参数</b>都被设为<b>\"none\"无加密模式</b>（如果\"none\"不可用，则换用其他加密方法）——无论如何，<b>两者必须相符</b>才能正常工作。然后Gost会按照\"-F\"参数指定的加密方法来跟远程服务器建立真正的加密连接。</string>
+    <string name="string_text_files_reminder">必须添加对应的命令行参数（例如： -C config.json）才能让下面的文件内容生效！</string>
+    <string name="string_delete">删除</string>
+    <string name="confirm_del_file_title">删除单个文件</string>
+    <string name="confirm_del_file_msg">你确定要删除这个文件吗？\n文件名： </string>
+    <string name="example_cfgjson">/* 示例配置，不会被保存生效 */\n{\n\t\t\"Debug\": true,\n\t\t\"Retries\": 0,\n\t\t\"ServeNodes\": [\n\t\t\t\t\":8080\",\n\t\t\t\t\"ss://chacha20:12345678@:8338\"\n\t\t],\n\t\t\"ChainNodes\": [\n\t\t\t\t\"http://192.168.1.1:8080\",\n\t\t\t\t\"https://10.0.2.1:443\"\n\t\t],\n\t\t\"Routes\": [\n\t\t\t\t{\n\t\t\t\t\t\t\"Retries\": 1,\n\t\t\t\t\t\t\"ServeNodes\": [\n\t\t\t\t\t\t\t\t\"ws://:1443\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"ChainNodes\": [\n\t\t\t\t\t\t\t\t\"socks://:192.168.1.1:1080\"\n\t\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\t\"Retries\": 3,\n\t\t\t\t\t\t\"ServeNodes\": [\n\t\t\t\t\t\t\t\t\"quic://:443\"\n\t\t\t\t\t\t]\n\t\t\t\t}\n\t\t]\n}\n</string>
+    <string name="example_cacert">-----BEGIN CERTIFICATE-----\n（你自己的CA证书，Base64 PEM格式）\n-----END CERTIFICATE-----</string>
+    <string name="example_clientcert">-----BEGIN CERTIFICATE-----\n（你自己的客户端证书，Base64 PEM格式）\n-----END CERTIFICATE-----</string>
+    <string name="example_clientcertkey">-----BEGIN RSA PRIVATE KEY-----\n（你自己的客户端证书私钥，Base64 PEM格式）\n-----END RSA PRIVATE KEY-----</string>
+    <string name="new_file_name_hint">新文件名</string>
+    <string name="string_add_file">添加文件</string>
+    <string name="err_file_name_empty">错误！文件名为空</string>
+    <string name="err_file_name_contains_slash">错误！文件名含有斜杠（/）</string>
+    <string name="err_file_already_exists">错误！文件已存在</string>
+    <string name="empty_config">配置为空</string>
+    <string name="prompt_config_mig_title">迁移配置参数到新格式</string>
+    <string name="prompt_config_mig_msg">新格式支持更多功能，比如指定双向认证证书。\n你可以随时撤销迁移，但这样会丢失迁移后的所有改动。</string>
+    <string name="config_mig_done">成功迁移配置参数到新格式</string>
+    <string name="config_mig_err">迁移配置参数到新格式时出错！</string>
+    <string name="loaded_cfgblob">已加载配置参数</string>
+    <string name="err_loading_cfgblob">加载配置参数时出错！</string>
+    <string name="saved_cfgblob">已保存配置参数</string>
+    <string name="error_saving_cfgblob">保存配置参数时出错</string>
+    <string name="ok">确定</string>
+    <string name="discard_changes">丢弃改动</string>
+    <string name="cancel">取消</string>
+    <string name="confirm_save_apply_title">要保存并应用配置参数吗？</string>
+    <string name="confirm_save_apply_msg">再按一次返回键即可继续编辑。</string>
+    <string name="cancelled">已取消</string>
+    <string name="string_text_legacyCfg">不再生效的旧版配置</string>
+    <string name="string_text_legacyCfg_desc">下列配置信息已经<b>不再生效</b>了。把它放在这里只是出于备份目的。\n你可以点击\"回退到旧版配置\"来让它重新生效，但这么做会<b>永久丢失自旧版迁移以来至今的所有改动</b>。\n不过，你可以在Shadowsocks-Android里导出（复制）一下代理设置条目，这样就能把当前的新配置备份下来了。</string>
+    <string name="revert_to_legacy_config">回退到旧版配置</string>
+    <string name="reverted_to_legacy_config">已回退到旧版配置</string>
+    <string name="error_reverting_to_legacy_config">回退到旧版配置时出错</string>
+    <string name="confirm_revert_to_legacy_config_title">回退到旧版配置？</string>
+    <string name="confirm_revert_to_legacy_config_msg">这么做会<b>永久丢失自旧版迁移以来至今的所有改动</b>。</string>
+</resources>
