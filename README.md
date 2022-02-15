@@ -29,13 +29,13 @@ Download prebuilt APK here [Release](https://github.com/xausky/ShadowsocksGostPl
 
 ## ❗ 注意 Notices
 
-* 使用#SS_HOST参数会先对填写的主机名进行DNS解析后才传递
-* 如果是与主机名相关的远程协议比如ws协议必须直接在参数里配置域名
+* ~使用#SS_HOST参数会先对填写的主机名进行DNS解析后才传递~ 这应该是旧版Shadowsocks-Android才会存在的问题
+* ~如果是与主机名相关的远程协议比如ws协议必须直接在参数里配置域名~ 同上
 * 在参数里面配置的域名会忽略手机系统的DNS配置固定使用 Public DNS+
 * ~如果插件参数里面使用 `-F=` 形式的参数传递则后续参数不能含有 `=` 号，推荐使用 `-F ` 形式代替~ 使用新版配置格式（CFGBLOB）即可避开这个问题
 
-* Host specified by #SS_HOST will be firstly resolved with DNS before being passed on
-* If the hostname is tied to the protocol, like WebSocket (ws), you must directly use domain name in configuration parameters
+* ~Host specified by #SS_HOST will be firstly resolved with DNS before being passed on~ Should be a problem specific to older versions of Shadowsocks-Android
+* ~If the hostname is tied to the protocol, like WebSocket (ws), you must directly use domain name in configuration parameters~ Same as above
 * The domain name(s) appeared in configuration parameters is/are hard-coded to be resolved with Public DNS+, in other words, ignoring the OS's DNS configurations
 * ~If you configure a parameter in the form of `-F=`, then the subsequent parameters can no longer contain `=`, so it's recommended to use the form of `-F ` instead~ This issue can be avoided simply by using new config format (CFGBLOB)
 
