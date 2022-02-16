@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.github.shadowsocks.plugin.ConfigurationActivity;
 import com.github.shadowsocks.plugin.PluginOptions;
@@ -31,13 +33,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
 
@@ -349,6 +356,7 @@ public class ConfigActivity extends ConfigurationActivity {
         @SuppressLint("InflateParams") final View child = inflater.inflate(R.layout.fileentry, null);
 
         TextView fileNameLabel = child.findViewById(R.id.text_file_name);
+        Button button_load = child.findViewById(R.id.button_load);
         Button button_del_file = child.findViewById(R.id.button_del_file);
         EditText fileDataEditText = child.findViewById(R.id.editText_file_data);
 
@@ -364,6 +372,13 @@ public class ConfigActivity extends ConfigurationActivity {
 
         fileDataMap.put(fileName, fileDataEditText.getText());
 
+        button_load.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readFromFile(fileName);
+            }
+        });
+
         button_del_file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -372,6 +387,45 @@ public class ConfigActivity extends ConfigurationActivity {
         });
 
         parent.addView(child);
+    }
+
+    private static final int READ_FROM_FILE = 1;
+    private String openingFileName = "";
+    private void readFromFile(String openingFileName) {
+        this.openingFileName = openingFileName;
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        String mimeType = "*/*";
+        if (openingFileName.endsWith(".json"))
+            mimeType = "application/json";
+        else if (openingFileName.endsWith(".pem"))
+            mimeType = "application/x-pem-file";
+        else if (openingFileName.endsWith(".txt"))
+            mimeType = "text/plain";
+        intent.setType(mimeType);
+        startActivityForResult(intent, READ_FROM_FILE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == READ_FROM_FILE) {
+            if (data != null) try {
+                StringBuilder stringBuilder = new StringBuilder();
+                InputStream inputStream = this.getContentResolver().openInputStream(data.getData());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
+                char[] buf = new char[4096];
+                for (int r; (r = reader.read(buf)) != -1; ) {
+                    stringBuilder.append(buf, 0, r);
+                }
+                Editable editable = fileDataMap.get(openingFileName);
+                if (editable != null) {
+                    editable.clear();
+                    editable.append(stringBuilder.toString());
+                }
+            } catch (IOException ignored) {}
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     private final String[] fileNameList = {
