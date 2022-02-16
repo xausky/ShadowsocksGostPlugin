@@ -18,6 +18,8 @@
     <string name="confirm_del_file_title">删除单个文件</string>
     <string name="confirm_del_file_msg">你确定要删除这个文件吗？\n文件名： </string>
     <string name="string_load">加载</string>
+    <string name="still_reading">仍在读取之前的文件，请稍后重试</string>
+    <string name="err_file_too_large">错误！文件过大（>1M字符）</string>
     <string name="example_cfgjson">/* 示例配置，不会被保存生效 */\n{\n\t\t\"Debug\": true,\n\t\t\"Retries\": 0,\n\t\t\"ServeNodes\": [\n\t\t\t\t\":8080\",\n\t\t\t\t\"ss://chacha20:12345678@:8338\"\n\t\t],\n\t\t\"ChainNodes\": [\n\t\t\t\t\"http://192.168.1.1:8080\",\n\t\t\t\t\"https://10.0.2.1:443\"\n\t\t],\n\t\t\"Routes\": [\n\t\t\t\t{\n\t\t\t\t\t\t\"Retries\": 1,\n\t\t\t\t\t\t\"ServeNodes\": [\n\t\t\t\t\t\t\t\t\"ws://:1443\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"ChainNodes\": [\n\t\t\t\t\t\t\t\t\"socks://:192.168.1.1:1080\"\n\t\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\t\"Retries\": 3,\n\t\t\t\t\t\t\"ServeNodes\": [\n\t\t\t\t\t\t\t\t\"quic://:443\"\n\t\t\t\t\t\t]\n\t\t\t\t}\n\t\t]\n}\n</string>
     <string name="example_cacert">-----BEGIN CERTIFICATE-----\n（你自己的CA证书，Base64 PEM格式）\n-----END CERTIFICATE-----</string>
     <string name="example_clientcert">-----BEGIN CERTIFICATE-----\n（你自己的客户端证书，Base64 PEM格式）\n-----END CERTIFICATE-----</string>

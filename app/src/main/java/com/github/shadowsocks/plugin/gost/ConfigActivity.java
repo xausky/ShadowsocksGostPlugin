@@ -2,12 +2,14 @@ package com.github.shadowsocks.plugin.gost;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -392,6 +394,10 @@ public class ConfigActivity extends ConfigurationActivity {
     private static final int READ_FROM_FILE = 1;
     private String openingFileName = "";
     private void readFromFile(String openingFileName) {
+        if (readFileThread != null && readFileThread.isAlive()) {
+            showToast(R.string.still_reading);
+            return;
+        }
         this.openingFileName = openingFileName;
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -406,23 +412,46 @@ public class ConfigActivity extends ConfigurationActivity {
         startActivityForResult(intent, READ_FROM_FILE);
     }
 
+    private Thread readFileThread;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == READ_FROM_FILE) {
-            if (data != null) try {
-                StringBuilder stringBuilder = new StringBuilder();
-                InputStream inputStream = this.getContentResolver().openInputStream(data.getData());
-                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
-                char[] buf = new char[4096];
-                for (int r; (r = reader.read(buf)) != -1; ) {
-                    stringBuilder.append(buf, 0, r);
-                }
-                Editable editable = fileDataMap.get(openingFileName);
-                if (editable != null) {
-                    editable.clear();
-                    editable.append(stringBuilder.toString());
-                }
-            } catch (IOException ignored) {}
+            if (data != null) {
+                final Uri uri = data.getData();
+                final ContentResolver resolver = this.getContentResolver();
+                if (readFileThread == null || !readFileThread.isAlive()) {
+                    readFileThread = new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                StringBuilder stringBuilder = new StringBuilder();
+                                InputStream inputStream = resolver.openInputStream(uri);
+                                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
+                                char[] buf = new char[4096];
+                                for (int r, t = 0; (r = reader.read(buf)) != -1; t += r) {
+                                    if (t > 1024 * 1024) {
+                                        showToast(R.string.err_file_too_large);
+                                        return;
+                                    }
+                                    stringBuilder.append(buf, 0, r);
+                                }
+                                final String result = stringBuilder.toString();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Editable editable = fileDataMap.get(openingFileName);
+                                        if (editable != null) {
+                                            editable.clear();
+                                            editable.append(result);
+                                        }
+                                    }
+                                });
+                            } catch (IOException ignored) {}
+                        }
+                    };
+                    readFileThread.start();
+                } else Log.e("ConfigActivity", "readFileThread is unexpectedly alive");
+            }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
