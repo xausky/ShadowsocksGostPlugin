@@ -1,7 +1,7 @@
 set -e
 NDK_VERSION_IF_MISSING=r23b
-GOST_VERSION=2.11.1
-GOLANG_VERSION=1.17.7
+GOST_VERSION=3.0.0-alpha.6
+GOLANG_VERSION=1.19.2
 cd $( cd "$( dirname "$0"  )" && pwd  )
 git submodule update --init --recursive
 if [ ! -e build ]
