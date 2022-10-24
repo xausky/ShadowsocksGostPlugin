@@ -41,6 +41,8 @@
     <string name="confirm_save_apply_title">要保存并应用配置参数吗？</string>
     <string name="confirm_save_apply_msg">再按一次返回键即可继续编辑。</string>
     <string name="cancelled">已取消</string>
+    <string name="string_text_dns_server">DNS服务器</string>
+    <string name="string_dns_server_desc">目前我们让Gost依靠自己来解析域名，而不是依靠系统。换句话说，系统DNS设置会被绕过（无视）。\n你可以在下面指定你想要的DNS服务器，格式为\"IP地址:端口号\"，比如\"119.29.29.29:53\"。</string>
     <string name="string_text_legacyCfg">不再生效的旧版配置</string>
     <string name="string_text_legacyCfg_desc">下列配置信息已经<b>不再生效</b>了。把它放在这里只是出于备份目的。\n你可以点击\"回退到旧版配置\"来让它重新生效，但这么做会<b>永久丢失自旧版迁移以来至今的所有改动</b>。\n不过，你可以在Shadowsocks-Android里导出（复制）一下代理设置条目，这样就能把当前的新配置备份下来了。</string>
     <string name="revert_to_legacy_config">回退到旧版配置</string>
