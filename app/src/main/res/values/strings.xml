@@ -18,14 +18,14 @@
         <item>Add 2 arguments</item>
     </string-array>
     <string name="string_text_file_entries">Attached files</string>
-    <string name="string_text_files_reminder">You need to add corresponding command line arguments (like: -C config.json) to make the file content below actually take effect!</string>
+    <string name="string_text_files_reminder">You need to add corresponding command line arguments (like: -C config.yaml) to make the file content below actually take effect!</string>
     <string name="string_delete">Delete</string>
     <string name="confirm_del_file_title">Delete a file</string>
     <string name="confirm_del_file_msg">Are you sure to delete this file?\nFile name: </string>
     <string name="string_load">Load</string>
     <string name="still_reading">Still reading the previous file, please retry later</string>
     <string name="err_file_too_large">Error! File is too large (>1M characters)</string>
-    <string name="example_cfgjson">/* sample config, won\'t be saved &amp; applied */\n{\n\t\t\"Debug\": true,\n\t\t\"Retries\": 0,\n\t\t\"ServeNodes\": [\n\t\t\t\t\":8080\",\n\t\t\t\t\"ss://chacha20:12345678@:8338\"\n\t\t],\n\t\t\"ChainNodes\": [\n\t\t\t\t\"http://192.168.1.1:8080\",\n\t\t\t\t\"https://10.0.2.1:443\"\n\t\t],\n\t\t\"Routes\": [\n\t\t\t\t{\n\t\t\t\t\t\t\"Retries\": 1,\n\t\t\t\t\t\t\"ServeNodes\": [\n\t\t\t\t\t\t\t\t\"ws://:1443\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"ChainNodes\": [\n\t\t\t\t\t\t\t\t\"socks://:192.168.1.1:1080\"\n\t\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\t\"Retries\": 3,\n\t\t\t\t\t\t\"ServeNodes\": [\n\t\t\t\t\t\t\t\t\"quic://:443\"\n\t\t\t\t\t\t]\n\t\t\t\t}\n\t\t]\n}</string>
+    <string name="example_cfgjson"># sample config, won\'t be saved &amp; applied\nchains:\n- name: chain-0\n\thops:\n\t- name: hop-0\n\t\tnodes:\n\t\t- name: node-0\n\t\t\taddr: example.com:443\n\t\t\tconnector:\n\t\t\t\ttype: http\n\t\t\t\tmetadata:\n\t\t\t\t\tpath: /ws\n\t\t\tdialer:\n\t\t\t\ttype: wss\n\t\t\t\ttls:\n\t\t\t\t\tsecure: true\n\t\t\t\t\tserverName: example.com\n\t\t\t\tmetadata:\n\t\t\t\t\tpath: /ws\nlog:\n\tlevel: debug</string>
     <string name="example_cacert">-----BEGIN CERTIFICATE-----\n(Your own CA certificate in Base64 PEM format)\n-----END CERTIFICATE-----</string>
     <string name="example_clientcert">-----BEGIN CERTIFICATE-----\n(Your own client certificate in Base64 PEM format)\n-----END CERTIFICATE-----</string>
     <string name="example_clientcertkey">-----BEGIN RSA PRIVATE KEY-----\n(Your own client certificate key in Base64 PEM format)\n-----END RSA PRIVATE KEY-----</string>

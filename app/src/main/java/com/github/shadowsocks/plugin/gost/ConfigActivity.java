@@ -457,7 +457,7 @@ public class ConfigActivity extends ConfigurationActivity {
     }
 
     private final String[] fileNameList = {
-            "config.json",
+            "config.yaml",
             "cacert.pem",
             "clientcert.pem",
             "clientcertkey.pem",

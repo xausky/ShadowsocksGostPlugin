@@ -13,14 +13,14 @@
     <string name="string_text_file_entries">附加文件</string>
     <string name="string_text_desc">请不要在命令行参数中加入双引号(\")，加了会让Gost无法启动。\n\"#SS_HOST\"与\"#SS_PORT\"将会被分别替换为Shadowsocks-Android中设置的\"服务器\"与\"远程端口\"。</string>
     <string name="string_explain_local_encryption">Gost会在本地开一个Shadowsocks服务器，Shadowsocks-Android直接连的就是它。为了避免不必要的开销，一般而言，<b>Shadowsocks-Android</b>本身和<b>Gost的\"-L\"参数</b>都被设为<b>\"none\"无加密模式</b>（如果\"none\"不可用，则换用其他加密方法）——无论如何，<b>两者必须相符</b>才能正常工作。然后Gost会按照\"-F\"参数指定的加密方法来跟远程服务器建立真正的加密连接。</string>
-    <string name="string_text_files_reminder">必须添加对应的命令行参数（例如： -C config.json）才能让下面的文件内容生效！</string>
+    <string name="string_text_files_reminder">必须添加对应的命令行参数（例如： -C config.yaml）才能让下面的文件内容生效！</string>
     <string name="string_delete">删除</string>
     <string name="confirm_del_file_title">删除单个文件</string>
     <string name="confirm_del_file_msg">你确定要删除这个文件吗？\n文件名： </string>
     <string name="string_load">加载</string>
     <string name="still_reading">仍在读取之前的文件，请稍后重试</string>
     <string name="err_file_too_large">错误！文件过大（>1M字符）</string>
-    <string name="example_cfgjson">/* 示例配置，不会被保存生效 */\n{\n\t\t\"Debug\": true,\n\t\t\"Retries\": 0,\n\t\t\"ServeNodes\": [\n\t\t\t\t\":8080\",\n\t\t\t\t\"ss://chacha20:12345678@:8338\"\n\t\t],\n\t\t\"ChainNodes\": [\n\t\t\t\t\"http://192.168.1.1:8080\",\n\t\t\t\t\"https://10.0.2.1:443\"\n\t\t],\n\t\t\"Routes\": [\n\t\t\t\t{\n\t\t\t\t\t\t\"Retries\": 1,\n\t\t\t\t\t\t\"ServeNodes\": [\n\t\t\t\t\t\t\t\t\"ws://:1443\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"ChainNodes\": [\n\t\t\t\t\t\t\t\t\"socks://:192.168.1.1:1080\"\n\t\t\t\t\t\t]\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\t\"Retries\": 3,\n\t\t\t\t\t\t\"ServeNodes\": [\n\t\t\t\t\t\t\t\t\"quic://:443\"\n\t\t\t\t\t\t]\n\t\t\t\t}\n\t\t]\n}\n</string>
+    <string name="example_cfgjson"># 示例配置，不会被保存生效\nchains:\n- name: chain-0\n\thops:\n\t- name: hop-0\n\t\tnodes:\n\t\t- name: node-0\n\t\t\taddr: example.com:443\n\t\t\tconnector:\n\t\t\t\ttype: http\n\t\t\t\tmetadata:\n\t\t\t\t\tpath: /ws\n\t\t\tdialer:\n\t\t\t\ttype: wss\n\t\t\t\ttls:\n\t\t\t\t\tsecure: true\n\t\t\t\t\tserverName: example.com\n\t\t\t\tmetadata:\n\t\t\t\t\tpath: /ws\nlog:\n\tlevel: debug</string>
     <string name="example_cacert">-----BEGIN CERTIFICATE-----\n（你自己的CA证书，Base64 PEM格式）\n-----END CERTIFICATE-----</string>
     <string name="example_clientcert">-----BEGIN CERTIFICATE-----\n（你自己的客户端证书，Base64 PEM格式）\n-----END CERTIFICATE-----</string>
     <string name="example_clientcertkey">-----BEGIN RSA PRIVATE KEY-----\n（你自己的客户端证书私钥，Base64 PEM格式）\n-----END RSA PRIVATE KEY-----</string>
