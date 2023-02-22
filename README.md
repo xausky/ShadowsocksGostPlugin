@@ -1,3 +1,5 @@
+<h1 align="center">Looking for maintainer 本项目正在寻求接手维护者</h1>
+
 <h1 align="center">Welcome to Shadowsocks Gost Plugin</h1>
 <p>
   <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/xausky/ShadowsocksGostPlugin/Android CI">
