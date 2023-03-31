@@ -15,16 +15,31 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button_del_file"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#303030"
-        android:backgroundTint="#303030"
-        android:text="@string/string_delete"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/button_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#303030"
+            android:backgroundTint="#303030"
+            android:text="@string/string_load"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/button_del_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#303030"
+            android:backgroundTint="#303030"
+            android:text="@string/string_delete"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/editText_file_data"
