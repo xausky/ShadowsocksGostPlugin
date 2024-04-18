@@ -1,7 +1,7 @@
 <h1 align="center">Welcome to Shadowsocks Gost Plugin</h1>
 
-## 本项目已经停止维护，建议使用这个 [fork](https://github.com/segfault-bilibili/ShadowsocksGostPlugin)
-## This project has stopped maintenance, it is recommended to use this [fork](https://github.com/segfault-bilibili/ShadowsocksGostPlugin)
+## 本项目已经停止维护，建议使用这个 [fork](https://github.com/hamid-nazari/ShadowsocksGostPlugin)
+## This project has stopped maintenance, it is recommended to use this [fork](https://github.com/hamid-nazari/ShadowsocksGostPlugin)
 
 <p>
   <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/xausky/ShadowsocksGostPlugin/Android CI">
