@@ -1,7 +1,7 @@
 set -e
 NDK_VERSION_IF_MISSING=r23b
-GOST_VERSION=2.11.1
-GOLANG_VERSION=1.17.7
+GOST_VERSION=3.0.0-alpha.6
+GOLANG_VERSION=1.19.2
 cd $( cd "$( dirname "$0"  )" && pwd  )
 git submodule update --init --recursive
 if [ ! -e build ]
@@ -44,16 +44,16 @@ echo "ANDROID_NDK_ROOT=$ANDROID_NDK_ROOT"
 cd gost
 CC=$(find $ANDROID_NDK_ROOT | grep 'armv7a-linux-androideabi21-clang$') \
 GOOS="android" GOARCH="arm" CGO_ENABLED="1" \
-go build -ldflags "-s -w" -a -o ../../app/src/main/jniLibs/armeabi-v7a/libgost-plugin.so ./cmd/gost
+go build -buildvcs=false -ldflags "-s -w" -a -o ../../app/src/main/jniLibs/armeabi-v7a/libgost-plugin.so ./cmd/gost
 
 CC=$(find $ANDROID_NDK_ROOT | grep 'aarch64-linux-android21-clang$') \
 GOOS="android" GOARCH="arm64" CGO_ENABLED="1" \
-go build -ldflags "-s -w" -a -o ../../app/src/main/jniLibs/arm64-v8a/libgost-plugin.so ./cmd/gost
+go build -buildvcs=false -ldflags "-s -w" -a -o ../../app/src/main/jniLibs/arm64-v8a/libgost-plugin.so ./cmd/gost
 
 CC=$(find $ANDROID_NDK_ROOT | grep 'i686-linux-android21-clang$') \
 GOOS="android" GOARCH="386" CGO_ENABLED="1" \
-go build -ldflags "-s -w" -a -o ../../app/src/main/jniLibs/x86/libgost-plugin.so ./cmd/gost
+go build -buildvcs=false -ldflags "-s -w" -a -o ../../app/src/main/jniLibs/x86/libgost-plugin.so ./cmd/gost
 
 CC=$(find $ANDROID_NDK_ROOT | grep 'x86_64-linux-android21-clang$') \
 GOOS="android" GOARCH="amd64" CGO_ENABLED="1" \
-go build -ldflags "-s -w" -a -o ../../app/src/main/jniLibs/x86_64/libgost-plugin.so ./cmd/gost
+go build -buildvcs=false -ldflags "-s -w" -a -o ../../app/src/main/jniLibs/x86_64/libgost-plugin.so ./cmd/gost
